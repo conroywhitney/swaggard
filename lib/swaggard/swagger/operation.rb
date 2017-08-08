@@ -67,7 +67,8 @@ module Swaggard
           'consumes'       => consumes,
           'produces'       => produces,
           'parameters'     => @parameters.map(&:to_doc),
-          'responses'      => Hash[@responses.map { |response| [response.status_code, response.to_doc] }]
+          'responses'      => Hash[@responses.map { |response| [response.status_code, response.to_doc] }],
+          'security'       => [{api_key: []}]
         }
       end
 

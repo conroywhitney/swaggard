@@ -41,12 +41,13 @@ module Swaggard
             'url'   => Swaggard.configuration.license_url
           }
         },
-        'host'        => Swaggard.configuration.host,
-        'basePath'    => Swaggard.configuration.api_base_path,
-        'tags'        => @tags.map { |_, tag| tag.to_doc },
-        'schemes'     => Swaggard.configuration.schemes,
-        'paths'       => Hash[@paths.values.map { |path| [path.path, path.to_doc] }],
-        'definitions' => Hash[@definitions.map { |definition| [definition.id, definition.to_doc] }]
+        'host'                => Swaggard.configuration.host,
+        'basePath'            => Swaggard.configuration.api_base_path,
+        'tags'                => @tags.map { |_, tag| tag.to_doc },
+        'schemes'             => Swaggard.configuration.schemes,
+        'paths'               => Hash[@paths.values.map { |path| [path.path, path.to_doc] }],
+        'definitions'         => Hash[@definitions.map { |definition| [definition.id, definition.to_doc] }],
+        'securityDefinitions' => {api_key: {type: 'apiKey', name: Swaggard.configuration.authentication_key, in: Swaggard.configuration.authentication_type}}
       }
     end
 
